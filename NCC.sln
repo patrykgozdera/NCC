@@ -5,9 +5,7 @@ VisualStudioVersion = 15.0.27004.2010
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NCC", "NCC\NCC.csproj", "{2415A782-6A96-4BC2-822E-C0C7CB30AF27}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CustomSocket", "..\..\Documents\GitHub\customSocket\CustomSocket.csproj", "{A0C09126-9DD3-4857-8C90-EC2B090BEB11}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "tsst_client", "..\tsst_client\tsst_client\tsst_client\tsst_client.csproj", "{F9A62193-8C61-4DA8-BC84-ED8EFDF2104A}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CustomSocket", "..\customSocket\CustomSocket.csproj", "{A0C09126-9DD3-4857-8C90-EC2B090BEB11}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -23,10 +21,6 @@ Global
 		{A0C09126-9DD3-4857-8C90-EC2B090BEB11}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{A0C09126-9DD3-4857-8C90-EC2B090BEB11}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{A0C09126-9DD3-4857-8C90-EC2B090BEB11}.Release|Any CPU.Build.0 = Release|Any CPU
-		{F9A62193-8C61-4DA8-BC84-ED8EFDF2104A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{F9A62193-8C61-4DA8-BC84-ED8EFDF2104A}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{F9A62193-8C61-4DA8-BC84-ED8EFDF2104A}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{F9A62193-8C61-4DA8-BC84-ED8EFDF2104A}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

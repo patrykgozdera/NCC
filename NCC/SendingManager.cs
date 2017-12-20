@@ -5,7 +5,6 @@ using System.Text;
 using System.Threading.Tasks;
 using CustomSocket;
 using System.Net;
-using tsst_client;
 
 namespace NCC
 {

@@ -12,14 +12,8 @@ namespace NCC
         {
             if(AddressesTable.isUserAuthenticated(userName))
             {
-                Console.WriteLine(GetTimeStamp() + " | " + userName + " authentication successful.");
+                CustomSocket.LogClass.Log(userName + " authentication successful.");
             }
-        }
-
-        public static string GetTimeStamp()
-        {
-            DateTime dateTime = DateTime.Now;
-            return dateTime.ToString("HH:mm:ss.ff");
         }
     }
 }

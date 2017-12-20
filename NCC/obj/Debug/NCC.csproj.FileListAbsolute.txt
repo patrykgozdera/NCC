@@ -34,3 +34,13 @@ C:\Users\Patryk\Desktop\NCC\NCC\obj\Debug\NCC.csprojResolveAssemblyReference.cac
 C:\Users\Patryk\Desktop\NCC\NCC\obj\Debug\NCC.csproj.CoreCompileInputs.cache
 C:\Users\Patryk\Desktop\NCC\NCC\obj\Debug\NCC.exe
 C:\Users\Patryk\Desktop\NCC\NCC\obj\Debug\NCC.pdb
+C:\Users\Patryk\Documents\GitHub\NCC\NCC\obj\Debug\NCC.csprojResolveAssemblyReference.cache
+C:\Users\Patryk\Documents\GitHub\NCC\NCC\obj\Debug\NCC.csproj.CoreCompileInputs.cache
+C:\Users\Patryk\Documents\GitHub\NCC\NCC\obj\Debug\NCC.exe
+C:\Users\Patryk\Documents\GitHub\NCC\NCC\obj\Debug\NCC.pdb
+C:\Users\Patryk\Documents\GitHub\NCC\NCC\bin\Debug\NCC.exe.config
+C:\Users\Patryk\Documents\GitHub\NCC\NCC\bin\Debug\NCC.exe
+C:\Users\Patryk\Documents\GitHub\NCC\NCC\bin\Debug\NCC.pdb
+C:\Users\Patryk\Documents\GitHub\NCC\NCC\bin\Debug\CustomSocket.exe
+C:\Users\Patryk\Documents\GitHub\NCC\NCC\bin\Debug\CustomSocket.pdb
+C:\Users\Patryk\Documents\GitHub\NCC\NCC\bin\Debug\CustomSocket.exe.config
