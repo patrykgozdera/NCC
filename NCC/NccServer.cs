@@ -71,33 +71,44 @@ namespace NCC
         {
             Tuple<String, Object> received = socket.ReceiveObject();
             String parameter = received.Item1;
-            messageParameters = (MessageParameters)received.Item2;            
+            messageParameters = (MessageParameters)received.Item2;
+            string firstParam = messageParameters.getFirstParameter();
+            string secondParam = messageParameters.getSecondParameter();
+            capacity = messageParameters.getCapacity();
 
             if (parameter.Equals(CALL_REQUEST))
             {
-                Policy.userAuthentication(messageParameters.getFirstParameter());               
-                userAddress_1 = Directory.getTranslatedAddress(messageParameters.getFirstParameter());
-                userAddress_2 = Directory.getTranslatedAddress(messageParameters.getSecondParameter());
-                capacity = messageParameters.getCapacity();
+                LogClass.Log("Received CALL REQUEST from " + firstParam);
+                Policy.userAuthentication(firstParam);
+                userAddress_1 = Directory.getTranslatedAddress(firstParam);
+                userAddress_2 = Directory.getTranslatedAddress(secondParam);
+                LogClass.Log("Sending CALL COORDINATION to NCC_2");
+                Console.WriteLine(Environment.NewLine);
                 SendingManager.Init(Config.getIntegerProperty("sendPortToNCC"));
                 SendingManager.SendMessage(CALL_COORDINATION, userAddress_1, userAddress_2, capacity);
             }
             else if (parameter.Equals(CALL_COORDINATION))
             {
-                Console.WriteLine("eloszka");
+                LogClass.Log("Received CALL COORDINATION from NCC_1");
                 SendingManager.Init(Config.getIntegerProperty("sendPortToCPCC"));
-                SendingManager.SendMessage(CALL_INDICATION, messageParameters.getFirstParameter(), messageParameters.getSecondParameter(), messageParameters.getCapacity());
+                LogClass.Log("Sending CALL INDICATION to CPCC");
+                Console.WriteLine(Environment.NewLine);
+                SendingManager.SendMessage(CALL_INDICATION, firstParam, secondParam, capacity);
             }
             else if (parameter.Equals(CALL_CONFIRMED_CPCC))
             {
-                Console.WriteLine("kokoszka");
+                LogClass.Log("Received CALL CONFIRMED from CPCC");
                 SendingManager.Init(Config.getIntegerProperty("sendPortToNCC"));
+                LogClass.Log("Sending CALL INDICATION to NCC_1");
+                Console.WriteLine(Environment.NewLine);
                 SendingManager.SendMessage(CALL_CONFIRMED_NCC, messageParameters.getFirstParameter(), messageParameters.getSecondParameter(), messageParameters.getCapacity());
             }
             else if (parameter.Equals(CALL_CONFIRMED_NCC))
             {
-                Console.WriteLine("ConnectionRequestToCC");
+                LogClass.Log("Received CALL CONFIRMED from NCC_2");
                 SendingManager.Init(Config.getIntegerProperty("sendPortToCC"));
+                LogClass.Log("Sending CONNECTION REQUEST to CC");
+                Console.WriteLine(Environment.NewLine);
                 SendingManager.SendMessage(CONNECTION_REQUEST, messageParameters.getFirstParameter(), messageParameters.getSecondParameter(), messageParameters.getCapacity());
 
             }

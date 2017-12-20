@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using CustomSocket;
 
 namespace NCC
 {
@@ -12,7 +13,7 @@ namespace NCC
         {
             if(AddressesTable.isUserAuthenticated(userName))
             {
-                CustomSocket.LogClass.Log(userName + " authentication successful.");
+                LogClass.Log(userName + " authentication successful.");
             }
         }
     }
