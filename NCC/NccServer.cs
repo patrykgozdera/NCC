@@ -98,14 +98,14 @@ namespace NCC
                 LogClass.Log("Received CALL CONFIRMED from " + secondParam);
                 SendingManager.Init(Config.getIntegerProperty("sendPortToNCC"));
                 LogClass.Log("Sending CALL CONFIRMED to NCC_1" + Environment.NewLine);
-                SendingManager.SendMessage(CALL_CONFIRMED_NCC, messageParameters.getFirstParameter(), messageParameters.getSecondParameter(), messageParameters.getCapacity());
+                SendingManager.SendMessage(CALL_CONFIRMED_NCC, firstParam, secondParam, capacity);
             }
             else if (parameter.Equals(CALL_CONFIRMED_NCC))
             {
                 LogClass.Log("Received CALL CONFIRMED from NCC_2");
-                //SendingManager.Init(Config.getIntegerProperty("sendPortToCC"));
+                SendingManager.Init(Config.getIntegerProperty("sendPortToCC"));
                 LogClass.Log("Sending CONNECTION REQUEST to CC" + Environment.NewLine);
-                //SendingManager.SendMessage(CONNECTION_REQUEST, messageParameters.getFirstParameter(), messageParameters.getSecondParameter(), messageParameters.getCapacity());
+                SendingManager.SendMessage(CONNECTION_REQUEST, firstParam, secondParam, capacity);
 
             }
         }
