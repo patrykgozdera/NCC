@@ -3,6 +3,7 @@ using CustomSocket;
 using System.Net;
 using System.Threading;
 using System.Net.Sockets;
+using System.Collections.Generic;
 
 namespace NCC
 {
@@ -105,6 +106,7 @@ namespace NCC
                 LogClass.Log("Received CALL CONFIRMED from NCC_2");
                 SendingManager.Init(Config.getIntegerProperty("sendPortToCC"));
                 LogClass.Log("Sending CONNECTION REQUEST to CC" + Environment.NewLine);
+                SendingManager.SendObject(new Dictionary<string, string>());
                 SendingManager.SendMessage(CONNECTION_REQUEST, firstParam, secondParam, capacity);
 
             }
