@@ -10,10 +10,6 @@ namespace NCC
     public class Directory
     {
         private static string address = null;
-        public Directory()
-        {
-
-        }
 
         public static String getTranslatedAddress(string userName)
         {

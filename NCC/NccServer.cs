@@ -82,34 +82,30 @@ namespace NCC
                 Policy.userAuthentication(firstParam);
                 userAddress_1 = Directory.getTranslatedAddress(firstParam);
                 userAddress_2 = Directory.getTranslatedAddress(secondParam);
-                LogClass.Log("Sending CALL COORDINATION to NCC_2");
-                Console.WriteLine(Environment.NewLine);
                 SendingManager.Init(Config.getIntegerProperty("sendPortToNCC"));
+                LogClass.Log("Sending CALL COORDINATION to NCC_2" + Environment.NewLine);
                 SendingManager.SendMessage(CALL_COORDINATION, userAddress_1, userAddress_2, capacity);
             }
             else if (parameter.Equals(CALL_COORDINATION))
             {
                 LogClass.Log("Received CALL COORDINATION from NCC_1");
                 SendingManager.Init(Config.getIntegerProperty("sendPortToCPCC"));
-                LogClass.Log("Sending CALL INDICATION to CPCC");
-                Console.WriteLine(Environment.NewLine);
+                LogClass.Log("Sending CALL INDICATION to " + secondParam + Environment.NewLine);
                 SendingManager.SendMessage(CALL_INDICATION, firstParam, secondParam, capacity);
             }
             else if (parameter.Equals(CALL_CONFIRMED_CPCC))
             {
-                LogClass.Log("Received CALL CONFIRMED from CPCC");
+                LogClass.Log("Received CALL CONFIRMED from " + secondParam);
                 SendingManager.Init(Config.getIntegerProperty("sendPortToNCC"));
-                LogClass.Log("Sending CALL INDICATION to NCC_1");
-                Console.WriteLine(Environment.NewLine);
+                LogClass.Log("Sending CALL CONFIRMED to NCC_1" + Environment.NewLine);
                 SendingManager.SendMessage(CALL_CONFIRMED_NCC, messageParameters.getFirstParameter(), messageParameters.getSecondParameter(), messageParameters.getCapacity());
             }
             else if (parameter.Equals(CALL_CONFIRMED_NCC))
             {
                 LogClass.Log("Received CALL CONFIRMED from NCC_2");
-                SendingManager.Init(Config.getIntegerProperty("sendPortToCC"));
-                LogClass.Log("Sending CONNECTION REQUEST to CC");
-                Console.WriteLine(Environment.NewLine);
-                SendingManager.SendMessage(CONNECTION_REQUEST, messageParameters.getFirstParameter(), messageParameters.getSecondParameter(), messageParameters.getCapacity());
+                //SendingManager.Init(Config.getIntegerProperty("sendPortToCC"));
+                LogClass.Log("Sending CONNECTION REQUEST to CC" + Environment.NewLine);
+                //SendingManager.SendMessage(CONNECTION_REQUEST, messageParameters.getFirstParameter(), messageParameters.getSecondParameter(), messageParameters.getCapacity());
 
             }
         }
