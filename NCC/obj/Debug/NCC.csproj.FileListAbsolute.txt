@@ -1,0 +1,36 @@
+C:\Users\Patryk\Desktop\TSST_etap_2\NCC\NCC\bin\Debug\NCC.exe.config
+C:\Users\Patryk\Desktop\TSST_etap_2\NCC\NCC\bin\Debug\NCC.exe
+C:\Users\Patryk\Desktop\TSST_etap_2\NCC\NCC\bin\Debug\NCC.pdb
+C:\Users\Patryk\Desktop\TSST_etap_2\NCC\NCC\bin\Debug\CustomSocket.exe
+C:\Users\Patryk\Desktop\TSST_etap_2\NCC\NCC\bin\Debug\CustomSocket.pdb
+C:\Users\Patryk\Desktop\TSST_etap_2\NCC\NCC\bin\Debug\CustomSocket.exe.config
+C:\Users\Patryk\Desktop\TSST_etap_2\NCC\NCC\obj\Debug\NCC.csprojResolveAssemblyReference.cache
+C:\Users\Patryk\Desktop\TSST_etap_2\NCC\NCC\obj\Debug\NCC.csproj.CoreCompileInputs.cache
+C:\Users\Patryk\Desktop\TSST_etap_2\NCC\NCC\obj\Debug\NCC.exe
+C:\Users\Patryk\Desktop\TSST_etap_2\NCC\NCC\obj\Debug\NCC.pdb
+C:\Users\Patryk-student ELKI\Desktop\NCC\NCC\bin\Debug\NCC.exe.config
+C:\Users\Patryk-student ELKI\Desktop\NCC\NCC\bin\Debug\NCC.exe
+C:\Users\Patryk-student ELKI\Desktop\NCC\NCC\bin\Debug\NCC.pdb
+C:\Users\Patryk-student ELKI\Desktop\NCC\NCC\bin\Debug\CustomSocket.exe
+C:\Users\Patryk-student ELKI\Desktop\NCC\NCC\bin\Debug\CustomSocket.pdb
+C:\Users\Patryk-student ELKI\Desktop\NCC\NCC\bin\Debug\CustomSocket.exe.config
+C:\Users\Patryk-student ELKI\Desktop\NCC\NCC\obj\Debug\NCC.csprojResolveAssemblyReference.cache
+C:\Users\Patryk-student ELKI\Desktop\NCC\NCC\obj\Debug\NCC.csproj.CoreCompileInputs.cache
+C:\Users\Patryk-student ELKI\Desktop\NCC\NCC\obj\Debug\NCC.exe
+C:\Users\Patryk-student ELKI\Desktop\NCC\NCC\obj\Debug\NCC.pdb
+C:\Users\Patryk-student ELKI\Desktop\NCC\NCC\bin\Debug\tsst_client.exe
+C:\Users\Patryk-student ELKI\Desktop\NCC\NCC\bin\Debug\tsst_client.pdb
+C:\Users\Patryk-student ELKI\Desktop\NCC\NCC\bin\Debug\tsst_client.exe.config
+C:\Users\Patryk\Desktop\NCC\NCC\bin\Debug\NCC.exe.config
+C:\Users\Patryk\Desktop\NCC\NCC\bin\Debug\NCC.exe
+C:\Users\Patryk\Desktop\NCC\NCC\bin\Debug\NCC.pdb
+C:\Users\Patryk\Desktop\NCC\NCC\bin\Debug\CustomSocket.exe
+C:\Users\Patryk\Desktop\NCC\NCC\bin\Debug\tsst_client.exe
+C:\Users\Patryk\Desktop\NCC\NCC\bin\Debug\CustomSocket.pdb
+C:\Users\Patryk\Desktop\NCC\NCC\bin\Debug\CustomSocket.exe.config
+C:\Users\Patryk\Desktop\NCC\NCC\bin\Debug\tsst_client.pdb
+C:\Users\Patryk\Desktop\NCC\NCC\bin\Debug\tsst_client.exe.config
+C:\Users\Patryk\Desktop\NCC\NCC\obj\Debug\NCC.csprojResolveAssemblyReference.cache
+C:\Users\Patryk\Desktop\NCC\NCC\obj\Debug\NCC.csproj.CoreCompileInputs.cache
+C:\Users\Patryk\Desktop\NCC\NCC\obj\Debug\NCC.exe
+C:\Users\Patryk\Desktop\NCC\NCC\obj\Debug\NCC.pdb
