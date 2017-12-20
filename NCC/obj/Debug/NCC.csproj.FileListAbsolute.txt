@@ -44,3 +44,11 @@ C:\Users\Patryk\Documents\GitHub\NCC\NCC\bin\Debug\NCC.pdb
 C:\Users\Patryk\Documents\GitHub\NCC\NCC\bin\Debug\CustomSocket.exe
 C:\Users\Patryk\Documents\GitHub\NCC\NCC\bin\Debug\CustomSocket.pdb
 C:\Users\Patryk\Documents\GitHub\NCC\NCC\bin\Debug\CustomSocket.exe.config
+C:\Users\73773\Desktop\projekty\TSSTSubnetwork\NCC\NCC\bin\Debug\NCC.exe.config
+C:\Users\73773\Desktop\projekty\TSSTSubnetwork\NCC\NCC\obj\Debug\NCC.exe
+C:\Users\73773\Desktop\projekty\TSSTSubnetwork\NCC\NCC\obj\Debug\NCC.pdb
+C:\Users\73773\Desktop\projekty\TSSTSubnetwork\NCC\NCC\bin\Debug\NCC.exe
+C:\Users\73773\Desktop\projekty\TSSTSubnetwork\NCC\NCC\bin\Debug\NCC.pdb
+C:\Users\73773\Desktop\projekty\TSSTSubnetwork\NCC\NCC\bin\Debug\CustomSocket.exe
+C:\Users\73773\Desktop\projekty\TSSTSubnetwork\NCC\NCC\bin\Debug\CustomSocket.pdb
+C:\Users\73773\Desktop\projekty\TSSTSubnetwork\NCC\NCC\obj\Debug\NCC.csprojResolveAssemblyReference.cache
