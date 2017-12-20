@@ -24,7 +24,11 @@ namespace NCC
         {
             message = new MessageParameters(param1, param2, capacity);
             csocket.SendObject(messageName, message);
+        }
 
+        public static void SendObject(object toSend)
+        {
+            csocket.SendObject(String.Empty, toSend);
         }
     }
 }
