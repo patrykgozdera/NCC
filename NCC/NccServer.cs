@@ -83,9 +83,20 @@ namespace NCC
                 Policy.userAuthentication(firstParam);
                 userAddress_1 = Directory.getTranslatedAddress(firstParam);
                 userAddress_2 = Directory.getTranslatedAddress(secondParam);
-                SendingManager.Init(Config.getIntegerProperty("sendPortToNCC"));
-                LogClass.Log("Sending CALL COORDINATION to NCC_2" + Environment.NewLine);
-                SendingManager.SendMessage(CALL_COORDINATION, userAddress_1, userAddress_2, capacity);
+                if (userAddress_2.Contains("10.1"))
+                {
+                    SendingManager.Init(Config.getIntegerProperty("sendPortToCC"));
+                    LogClass.Log("Sending CONNECTION REQUEST to CC" + Environment.NewLine);
+                    SendingManager.SendObject(new Dictionary<string, string>());
+                    SendingManager.SendMessage(CONNECTION_REQUEST, userAddress_1, userAddress_2, capacity);
+
+                }
+                else if (userAddress_2.Contains("10.2"))
+                {
+                    SendingManager.Init(Config.getIntegerProperty("sendPortToNCC"));
+                    LogClass.Log("Sending CALL COORDINATION to NCC_2" + Environment.NewLine);
+                    SendingManager.SendMessage(CALL_COORDINATION, userAddress_1, userAddress_2, capacity);
+                }
             }
             else if (parameter.Equals(CALL_COORDINATION))
             {
