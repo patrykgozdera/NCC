@@ -98,6 +98,27 @@ namespace NCC
                     SendingManager.SendMessage(CALL_COORDINATION, userAddress_1, userAddress_2, capacity);
                 }
             }
+            else if (parameter.Equals(CALL_TEARDOWN))
+            {
+                LogClass.Log("Received CALL TEARDOWN from " + firstParam);
+                Policy.userAuthentication(firstParam);
+                userAddress_1 = Directory.getTranslatedAddress(firstParam);
+                userAddress_2 = Directory.getTranslatedAddress(secondParam);
+                if (userAddress_2.Contains("10.1"))
+                {
+                    SendingManager.Init(Config.getIntegerProperty("sendPortToCC"));
+                    LogClass.Log("Sending TEARDOWN to CC" + Environment.NewLine);
+                    SendingManager.SendObject(new Dictionary<string, string>());
+                    SendingManager.SendMessage(CALL_TEARDOWN, userAddress_1, userAddress_2, capacity);
+
+                }
+                else if (userAddress_2.Contains("10.2"))
+                {
+                    SendingManager.Init(Config.getIntegerProperty("sendPortToNCC"));
+                    LogClass.Log("Sending CALL TEARDOWN to NCC_2" + Environment.NewLine);
+                    SendingManager.SendMessage(CALL_TEARDOWN, userAddress_1, userAddress_2, capacity);
+                }
+            }
             else if (parameter.Equals(CALL_COORDINATION))
             {
                 LogClass.Log("Received CALL COORDINATION from NCC_1");
