@@ -93,44 +93,75 @@ namespace NCC
             if (parameter.Equals(CALL_REQUEST))
             {
                 LogClass.Log("Received CALL REQUEST from " + firstParam);
-                Policy.userAuthentication(firstParam);
-                userAddress_1 = Directory.getTranslatedAddress(firstParam);
-                userAddress_2 = Directory.getTranslatedAddress(secondParam);
-                if (userAddress_2.Contains("10.1"))
+                try
                 {
-                    SendingManager.Init(Config.getIntegerProperty("sendPortToCC"));
-                    LogClass.Log("Sending CONNECTION REQUEST to CC" + Environment.NewLine);
-                    SendingManager.SendObject(new Dictionary<string, string>());
-                    SendingManager.SendMessage(CONNECTION_REQUEST, userAddress_1, userAddress_2, capacity);
+                    Policy.userAuthentication(firstParam);
+                    userAddress_1 = Directory.getTranslatedAddress(firstParam);
+                    LogClass.Log("Translated " + firstParam + " to " + userAddress_1);
+                    userAddress_2 = Directory.getTranslatedAddress(secondParam);
+                    if (userAddress_2 != null)
+                        LogClass.Log("Translated " + secondParam + " to " + userAddress_2);
 
+                    if (userAddress_2.Contains("10.1"))
+                    {
+                        SendingManager.Init(Config.getIntegerProperty("sendPortToCC"));
+                        LogClass.Log("Sending CONNECTION REQUEST to CC" + Environment.NewLine);
+                        SendingManager.SendObject(new Dictionary<string, string>());
+                        SendingManager.SendMessage(CONNECTION_REQUEST, userAddress_1, userAddress_2, capacity);
+
+                    }
+                    else if (userAddress_2.Contains("10.2"))
+                    {
+                        SendingManager.Init(Config.getIntegerProperty("sendPortToNCC"));
+                        LogClass.Log("Sending CALL COORDINATION to NCC_2" + Environment.NewLine);
+                        SendingManager.SendMessage(CALL_COORDINATION, userAddress_1, userAddress_2, capacity);
+                    }
                 }
-                else if (userAddress_2.Contains("10.2"))
+                catch (NullReferenceException)
                 {
-                    SendingManager.Init(Config.getIntegerProperty("sendPortToNCC"));
-                    LogClass.Log("Sending CALL COORDINATION to NCC_2" + Environment.NewLine);
-                    SendingManager.SendMessage(CALL_COORDINATION, userAddress_1, userAddress_2, capacity);
+                    LogClass.Log("Cannot translate " + secondParam);
+                    LogClass.Log("Cannot set up the connection");
+                    SendingManager.Init(Config.getIntegerProperty("sendPortToCPCC"));
+                    LogClass.Log("Sending CALL REJECTED to CPCC" + Environment.NewLine);
+                    SendingManager.SendMessage(CALL_REJECTED_CPCC, "1", "1", 0);
                 }
             }
 
             else if (parameter.Equals(CALL_TEARDOWN))
             {
                 LogClass.Log("Received CALL TEARDOWN from " + firstParam);
-                Policy.userAuthentication(firstParam);
-                userAddress_1 = Directory.getTranslatedAddress(firstParam);
-                userAddress_2 = Directory.getTranslatedAddress(secondParam);
-                if (userAddress_2.Contains("10.1"))
+                try
                 {
-                    SendingManager.Init(Config.getIntegerProperty("sendPortToCC"));
-                    LogClass.Log("Sending CALL TEARDOWN to CC" + Environment.NewLine);
-                    SendingManager.SendObject(new Dictionary<string, string>());
-                    SendingManager.SendMessage(CALL_TEARDOWN, userAddress_1, userAddress_2, capacity);
+                    Policy.userAuthentication(firstParam);
+                    userAddress_1 = Directory.getTranslatedAddress(firstParam);
+                    LogClass.Log("Translated " + firstParam + " to " + userAddress_1);
+                    userAddress_2 = Directory.getTranslatedAddress(secondParam);
+                    if (userAddress_2 != null)
+                        LogClass.Log("Translated " + secondParam + " to " + userAddress_2);
+
+                    if (userAddress_2.Contains("10.1"))
+                    {
+                        SendingManager.Init(Config.getIntegerProperty("sendPortToCC"));
+                        LogClass.Log("Sending CALL TEARDOWN to CC" + Environment.NewLine);
+                        SendingManager.SendObject(new Dictionary<string, string>());
+                        SendingManager.SendMessage(CALL_TEARDOWN, userAddress_1, userAddress_2, capacity);
+
+                    }
+                    else if (userAddress_2.Contains("10.2"))
+                    {
+                        SendingManager.Init(Config.getIntegerProperty("sendPortToNCC"));
+                        LogClass.Log("Sending CALL TEARDOWN to NCC_2" + Environment.NewLine);
+                        SendingManager.SendMessage(CALL_TEARDOWN_NCC, userAddress_1, userAddress_2, capacity);
+                    }
 
                 }
-                else if (userAddress_2.Contains("10.2"))
+                catch (NullReferenceException)
                 {
-                    SendingManager.Init(Config.getIntegerProperty("sendPortToNCC"));
-                    LogClass.Log("Sending CALL TEARDOWN to NCC_2" + Environment.NewLine);
-                    SendingManager.SendMessage(CALL_TEARDOWN_NCC, userAddress_1, userAddress_2, capacity);
+                    LogClass.Log("Cannot translate " + secondParam);
+                    LogClass.Log("Cannot set up the connection");
+                    SendingManager.Init(Config.getIntegerProperty("sendPortToCPCC"));
+                    LogClass.Log("Sending CALL REJECTED to CPCC" + Environment.NewLine);
+                    SendingManager.SendMessage(CALL_REJECTED_CPCC, "1", "1", 0);
                 }
             }
 

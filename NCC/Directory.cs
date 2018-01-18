@@ -14,7 +14,6 @@ namespace NCC
         public static String getTranslatedAddress(string userName)
         {
             address = AddressesTable.getAddress(userName);
-            LogClass.Log("Translated " + userName + " to " + address);
             return address;
         }
 
