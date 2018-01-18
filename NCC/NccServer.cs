@@ -11,11 +11,17 @@ namespace NCC
     {
         public const string CALL_REQUEST = "callRequest";
         public const string CONNECTION_REQUEST = "connectionRequestFromNCC";
-        public const string CALL_TEARDOWN = "callTerdown";
+        public const string CALL_TEARDOWN = "callTeardown";
+        public const string CALL_TEARDOWN_NCC = "callTeardownNCC";
+        public const string CALL_TEARDOWN_CPCC = "callTeardownCPCC";
+        public const string CALL_TEARDOWN_NCC_2 = "callTeardownNCC_2";
         public const string CALL_COORDINATION = "callCoordination";
         public const string CALL_INDICATION = "callIndication";
         public const string CALL_CONFIRMED_CPCC = "callConfirmedCPCC";
         public const string CALL_CONFIRMED_NCC = "callConfirmedNCC";
+        public const String CALL_REJECTED_CPCC = "callRejectedCPCC";
+        public const String ACK_FUNCTION = "ackFunction";
+        public const String NACK_FUNCTION = "nackFunction";
 
         private static string userAddress_1;
         private static string userAddress_2;
@@ -72,10 +78,17 @@ namespace NCC
         {
             Tuple<String, Object> received = socket.ReceiveObject();
             String parameter = received.Item1;
-            messageParameters = (MessageParameters)received.Item2;
-            string firstParam = messageParameters.getFirstParameter();
-            string secondParam = messageParameters.getSecondParameter();
-            capacity = messageParameters.getCapacity();
+            Object receivedObject = received.Item2;
+            string firstParam = null;
+            string secondParam = null;
+
+            if (receivedObject is MessageParameters)
+            {
+                messageParameters = (MessageParameters)received.Item2;
+                firstParam = messageParameters.getFirstParameter();
+                secondParam = messageParameters.getSecondParameter();
+                capacity = messageParameters.getCapacity();
+            }
 
             if (parameter.Equals(CALL_REQUEST))
             {
@@ -98,6 +111,7 @@ namespace NCC
                     SendingManager.SendMessage(CALL_COORDINATION, userAddress_1, userAddress_2, capacity);
                 }
             }
+
             else if (parameter.Equals(CALL_TEARDOWN))
             {
                 LogClass.Log("Received CALL TEARDOWN from " + firstParam);
@@ -107,7 +121,7 @@ namespace NCC
                 if (userAddress_2.Contains("10.1"))
                 {
                     SendingManager.Init(Config.getIntegerProperty("sendPortToCC"));
-                    LogClass.Log("Sending TEARDOWN to CC" + Environment.NewLine);
+                    LogClass.Log("Sending CALL TEARDOWN to CC" + Environment.NewLine);
                     SendingManager.SendObject(new Dictionary<string, string>());
                     SendingManager.SendMessage(CALL_TEARDOWN, userAddress_1, userAddress_2, capacity);
 
@@ -116,9 +130,35 @@ namespace NCC
                 {
                     SendingManager.Init(Config.getIntegerProperty("sendPortToNCC"));
                     LogClass.Log("Sending CALL TEARDOWN to NCC_2" + Environment.NewLine);
-                    SendingManager.SendMessage(CALL_TEARDOWN, userAddress_1, userAddress_2, capacity);
+                    SendingManager.SendMessage(CALL_TEARDOWN_NCC, userAddress_1, userAddress_2, capacity);
                 }
             }
+
+            else if (parameter.Equals(CALL_TEARDOWN_NCC))
+            {
+                LogClass.Log("Received CALL TEARDOWN from NCC_1");
+                SendingManager.Init(Config.getIntegerProperty("sendPortToCPCC"));
+                LogClass.Log("Sending CALL TEARDOWN to " + secondParam + Environment.NewLine);
+                SendingManager.SendMessage(CALL_TEARDOWN_CPCC, firstParam, secondParam, capacity);
+            }
+
+            else if (parameter.Equals(CALL_TEARDOWN_CPCC))
+            {
+                LogClass.Log(secondParam + " accepted the dealocation");
+                SendingManager.Init(Config.getIntegerProperty("sendPortToNCC"));
+                LogClass.Log("Sending CALL TEARDOWN to NCC_1" + Environment.NewLine);
+                SendingManager.SendMessage(CALL_TEARDOWN_NCC_2, userAddress_1, userAddress_2, capacity);
+            }
+
+            else if (parameter.Equals(CALL_TEARDOWN_NCC_2))
+            {
+                LogClass.Log("Received DEALLOCATION CONFIRMATION from NCC_2");
+                SendingManager.Init(Config.getIntegerProperty("sendPortToCC"));
+                LogClass.Log("Sending CALL TEARDOWN to CC" + Environment.NewLine);
+                SendingManager.SendObject(new Dictionary<string, string>());
+                SendingManager.SendMessage(CALL_TEARDOWN, userAddress_1, userAddress_2, capacity);
+            }
+
             else if (parameter.Equals(CALL_COORDINATION))
             {
                 LogClass.Log("Received CALL COORDINATION from NCC_1");
@@ -126,6 +166,7 @@ namespace NCC
                 LogClass.Log("Sending CALL INDICATION to " + secondParam + Environment.NewLine);
                 SendingManager.SendMessage(CALL_INDICATION, firstParam, secondParam, capacity);
             }
+
             else if (parameter.Equals(CALL_CONFIRMED_CPCC))
             {
                 LogClass.Log("Received CALL CONFIRMED from " + secondParam);
@@ -133,6 +174,7 @@ namespace NCC
                 LogClass.Log("Sending CALL CONFIRMED to NCC_1" + Environment.NewLine);
                 SendingManager.SendMessage(CALL_CONFIRMED_NCC, firstParam, secondParam, capacity);
             }
+
             else if (parameter.Equals(CALL_CONFIRMED_NCC))
             {
                 LogClass.Log("Received CALL CONFIRMED from NCC_2");
@@ -141,6 +183,22 @@ namespace NCC
                 SendingManager.SendObject(new Dictionary<string, string>());
                 SendingManager.SendMessage(CONNECTION_REQUEST, firstParam, secondParam, capacity);
 
+            }
+
+            else if (parameter.Equals(ACK_FUNCTION))
+            {
+                LogClass.Log("Connection set properly");
+                SendingManager.Init(Config.getIntegerProperty("sendPortToCPCC"));
+                LogClass.Log("Sending CALL CONFIRMED to CPCC" + Environment.NewLine);
+                SendingManager.SendMessage(CALL_CONFIRMED_CPCC, "1", "1", 0);
+            }
+
+            else if (parameter.Equals(NACK_FUNCTION))
+            {
+                LogClass.Log("Cannot set up the connection");
+                SendingManager.Init(Config.getIntegerProperty("sendPortToCPCC"));
+                LogClass.Log("Sending CALL REJECTED to CPCC" + Environment.NewLine);
+                SendingManager.SendMessage(CALL_REJECTED_CPCC, "1", "1", 0);
             }
         }
     }
